@@ -13,7 +13,6 @@ const ref_archive = new DatArchive("dat://2f21e3c122ef0f2555d3a99497710cd875c7b0
 ref_archive.download()
 
 async function ignition() {
-  console.info('ignition()')
   const $name = document.querySelector('#name')
 
   togglePanes()
@@ -21,7 +20,6 @@ async function ignition() {
 }
 
 async function togglePanes () {
-  console.info('togglePanes()')
   const $paneview = document.querySelector(".pane-view")
   const $panes = document.querySelectorAll(".pane")
 
@@ -45,7 +43,6 @@ function validateName (name) {
 }
 
 async function liftoff () {
-  console.info('liftoff')
 
   const $name = document.querySelector('#name')
   const $description = document.querySelector('#description')
