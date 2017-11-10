@@ -1,0 +1,133 @@
+
+:root {
+  --font-regular: 'input_mono_regular', monospace;
+  --font-medium: 'input_mono_medium', monospace;
+  --font-thin: 'input_mono_thin', monospace;
+  --black: #222;
+  --grey: #aaa;
+  --white: #fcfcfc;
+  --red: #d95270;
+
+  background-color: var(--white);
+  color: var(--black);
+  font-family: var(--font-regular);
+
+  font-size: 100%;
+}
+
+h1 {
+  font-family: var(--font-medium);
+  font-size: 4rem;
+}
+
+p {
+  margin: 1rem 0;
+}
+
+button {
+  padding: 0.5 1rem;
+}
+
+.pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+.pane.active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 500ms 500ms ease;
+  z-index: 1;
+}
+
+.pane > *+* {
+  margin-top: 1rem;
+}
+
+.pane:not(.active) {
+  opacity: 0;
+  transition: opacity 400ms ease, transform 300ms 100ms ease;
+}
+
+.pane:nth-child(1):not(.active) {
+  transform: scale(.98);
+  transform: translateX(-1rem);
+}
+.pane:nth-child(2):not(.active) {
+  transform: translateX(1rem);
+}
+
+.pane-view {
+  overflow: hidden;
+  transition: margin 700ms 200ms ease;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+input[type="text"] {
+  width: 20rem;
+  height: 3rem;
+  border-bottom: var(--grey) solid .125rem;
+  cursor: text;
+}
+
+input[type="text"]:focus {
+  border-color: var(--black);
+}
+
+.field[data-invalid] input[type="text"] {
+  border-color: var(--red);
+}
+
+.field[data-help]::after,
+.field[data-invalid]::after
+{
+  display: block;
+  margin-top: .25rem;
+  font-size: .8em;
+}
+
+.field[data-help]::after {
+  content: attr(data-help);
+  color: var(--grey);
+}
+
+.field[data-invalid]::after {
+  content: attr(data-invalid);
+  color: var(--red);
+}
+
+input[type="text"]::placeholder {
+  color: var(--grey);
+}
+
+button {
+  padding: .5rem 1rem;
+  background-color: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  border: .125rem solid var(--white);
+}
+
+button:focus:not(:active) {
+  outline: .125rem solid var(--black);
+}
+
+#close {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 2rem;
+  height: 2rem;
+  fill: var(--black);
+  cursor: pointer;
+}
