@@ -63,8 +63,11 @@ async function liftoff () {
   if (!validateName(name)) {
     return;
   }
+  const launchpad_url = await DatArchive.resolveName(window.location.href)
+  const neauoire_url = "dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/"
 
-  const archive = await DatArchive.fork("dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/", {
+  const launchpad = await new DatArchive(launchpad_url)
+  const portal = await DatArchive.fork(neauoire_url, {
     title: `~${name}`,
     description,
   })
@@ -75,10 +78,12 @@ async function liftoff () {
     port:[],
     feed:[],
     site:site,
-    dat:archive.url
+    dat: portal.url
   }
 
-  await archive.writeFile('/portal.json', JSON.stringify(portal_str));
-  await archive.commit();
-  open(archive.url)
+  await portal.writeFile('/portal.json', JSON.stringify(portal_str));
+  let icon = await launchpad.readFile('/assets/icon.svg')
+  await portal.writeFile('/media/content/icon.svg', icon);
+  await portal.commit();
+  open(portal.url)
 }
