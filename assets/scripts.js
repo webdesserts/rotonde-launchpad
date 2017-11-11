@@ -25,6 +25,15 @@ async function togglePanes () {
 
   for (const $pane of $panes) {
     $pane.classList.toggle('active')
+    let $tabbed_inputs = $pane.querySelectorAll('[tabindex]')
+    for (const $input of $tabbed_inputs) {
+      console.log($input)
+      if ($input.tabIndex < 0) {
+        $input.setAttribute('tabindex', Math.abs($input.tabIndex))
+      } else {
+        $input.setAttribute('tabindex', -1 * $input.tabIndex)
+      }
+    }
   }
 }
 

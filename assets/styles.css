@@ -1,3 +1,6 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 :root {
   --font-regular: 'input_mono_regular', monospace;
@@ -8,11 +11,14 @@
   --white: #fcfcfc;
   --red: #d95270;
 
-  background-color: var(--white);
   color: var(--black);
   font-family: var(--font-regular);
 
   font-size: 100%;
+}
+
+:root, body {
+  background-color: var(--white);
 }
 
 h1 {
@@ -22,10 +28,6 @@ h1 {
 
 p {
   margin: 1rem 0;
-}
-
-button {
-  padding: 0.5 1rem;
 }
 
 .pane {
@@ -77,11 +79,17 @@ input[type="text"] {
   width: 20rem;
   height: 3rem;
   border-bottom: var(--grey) solid .125rem;
+  background-color: transparent;
   cursor: text;
+  transition: border-color 200ms ease;
 }
 
 input[type="text"]:focus {
   border-color: var(--black);
+}
+
+input[type="text"]::placeholder {
+  color: var(--grey);
 }
 
 .field[data-invalid] input[type="text"] {
@@ -106,28 +114,48 @@ input[type="text"]:focus {
   color: var(--red);
 }
 
-input[type="text"]::placeholder {
-  color: var(--grey);
+.button,
+.icon-button {
+  cursor: pointer;
 }
 
-button {
+.button {
   padding: .5rem 1rem;
   background-color: var(--black);
   color: var(--white);
-  cursor: pointer;
   border: .125rem solid var(--white);
+  outline: .125rem solid transparent;
+  transition: outline-color 200ms ease;
 }
 
-button:focus:not(:active) {
-  outline: .125rem solid var(--black);
+.button:focus:not(:active),
+.button:hover:not(:active){
+  outline-color: var(--black);
+}
+
+.icon-button {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--white);
+  color: var(--black);
+  border-radius: 50%;
+  border: .125rem solid var(--white);
+  transition: border-color 200ms ease;
+}
+
+.icon-button img {
+  fill: var(--black);
+  width: 100%;
+  height: 100%;
+}
+
+.icon-button:hover:not(:active),
+.icon-button:focus:not(:active) {
+  border-color: var(--black)
 }
 
 #close {
   position: absolute;
   top: 2rem;
   left: 2rem;
-  width: 2rem;
-  height: 2rem;
-  fill: var(--black);
-  cursor: pointer;
 }

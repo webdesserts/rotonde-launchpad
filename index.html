@@ -8,24 +8,26 @@
 <div class="pane-view">
   <section class="pane active">
     <h1>Rotonde Launchpad</h1>
-    <button id="ignition">Start your own portal!</button>
+    <button id="ignition" class="button" tabindex="1">Start your own portal!</button>
   </section>
 
   <section class="pane">
-    <img id="close" src="/assets/close.svg" alt="close"/>
+    <button id="close" class="icon-button" tabindex="-5">
+      <img src="/assets/close.svg" alt="close"/>
+    </button>
 
     <div class="field" data-help="e.g. lord-of-corgis">
-      <input id="name" type="text" placeholder="User Name" />
+      <input id="name" type="text" placeholder="User Name" tabindex="-1" />
     </div>
 
     <div class="field">
-      <input id="description" type="text" placeholder="Description (Optional)"/>
+      <input id="description" type="text" placeholder="Description (Optional)" tabindex="-2"/>
     </div>
 
     <div class="field">
-      <input id="website" type="text" placeholder="Website (Optional)"/>
+      <input id="website" type="text" placeholder="Website (Optional)" tabindex="-3"/>
     </div>
 
-    <button tabindex="0" id="liftoff">Launch!</button>
+    <button id="liftoff" class="button" tabindex="-4">Launch!</button>
   </section>
 </div>
