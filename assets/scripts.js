@@ -9,8 +9,9 @@ $close.addEventListener('click', goToPane.bind(null, 'landing-page'))
 $liftoff.addEventListener('click', liftoff)
 
 // pre download the ref implementation so its ready when they fork
-const ref_archive = new DatArchive("dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/")
-ref_archive.download()
+const neauoire_url = "dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/"
+const neauoire_archive = new DatArchive(neauoire_url)
+neauoire_archive.download()
 
 initPanes()
 
@@ -63,7 +64,6 @@ async function liftoff () {
   if (!validateName(name)) { return; }
 
   const launchpad_url = await DatArchive.resolveName(window.location.href)
-  const neauoire_url = "dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/"
 
   const launchpad = await new DatArchive(launchpad_url)
   const portal = await DatArchive.fork(neauoire_url, {
