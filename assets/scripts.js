@@ -64,12 +64,14 @@ async function liftoff () {
   if (!validateName(name)) { return; }
 
   const launchpad_url = await DatArchive.resolveName(window.location.href)
-
   const launchpad = await new DatArchive(launchpad_url)
+
   const portal = await DatArchive.fork(neauoire_url, {
     title: `~${name}`,
     description,
   })
+
+  await cleanArchive(portal)
 
   const portal_str = {
     name: name,
@@ -81,8 +83,19 @@ async function liftoff () {
   }
 
   await portal.writeFile('/portal.json', JSON.stringify(portal_str));
+
   let icon = await launchpad.readFile('/assets/icon.svg')
   await portal.writeFile('/media/content/icon.svg', icon);
+
   await portal.commit();
   open(portal.url)
+}
+
+async function cleanArchive(archive) {
+  const root = await archive.readdir('/')
+  const frozen_files = root.filter((path) => path.startsWith('frozen-'))
+
+  for (const file of frozen_files) {
+    await archive.unlink(file)
+  }
 }
