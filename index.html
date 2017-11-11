@@ -6,28 +6,28 @@
 <script defer src="/assets/scripts.js"></script>
 
 <div class="pane-view">
-  <section class="pane active">
+  <section id="landing-page" class="pane pane--active pane--fade-left">
     <h1>Rotonde Launchpad</h1>
-    <button id="ignition" class="button" tabindex="1">Start your own portal!</button>
+    <button id="ignition" class="button" tabindex="0">Start your own portal!</button>
   </section>
 
-  <section class="pane">
-    <button id="close" class="icon-button" tabindex="-5">
+  <section id="create-portal" class="pane pane--fade-right">
+    <div class="field" data-help="e.g. lord-of-corgis">
+      <input id="name" type="text" placeholder="User Name" tabindex="0" />
+    </div>
+
+    <div class="field">
+      <input id="description" type="text" placeholder="Description (Optional)" tabindex="0"/>
+    </div>
+
+    <div class="field">
+      <input id="website" type="text" placeholder="Website (Optional)" tabindex="0"/>
+    </div>
+
+    <button id="liftoff" class="button" tabindex="0">Launch!</button>
+
+    <button id="close" class="icon-button" tabindex="0">
       <img src="/assets/close.svg" alt="close"/>
     </button>
-
-    <div class="field" data-help="e.g. lord-of-corgis">
-      <input id="name" type="text" placeholder="User Name" tabindex="-1" />
-    </div>
-
-    <div class="field">
-      <input id="description" type="text" placeholder="Description (Optional)" tabindex="-2"/>
-    </div>
-
-    <div class="field">
-      <input id="website" type="text" placeholder="Website (Optional)" tabindex="-3"/>
-    </div>
-
-    <button id="liftoff" class="button" tabindex="-4">Launch!</button>
   </section>
 </div>

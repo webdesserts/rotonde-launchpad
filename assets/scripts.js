@@ -4,35 +4,35 @@ const $ignition = document.querySelector('#ignition')
 const $close = document.querySelector('#close')
 const $liftoff = document.querySelector('#liftoff')
 
-$ignition.addEventListener('click', ignition)
-$close.addEventListener('click', togglePanes)
+$ignition.addEventListener('click', goToPane.bind(null, 'create-portal'))
+$close.addEventListener('click', goToPane.bind(null, 'landing-page'))
 $liftoff.addEventListener('click', liftoff)
 
 // pre download the ref implementation so its ready when they fork
 const ref_archive = new DatArchive("dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/")
 ref_archive.download()
 
-async function ignition() {
-  const $name = document.querySelector('#name')
+initPanes()
 
-  togglePanes()
-  $name.focus()
+function initPanes () {
+  const $active = document.querySelector('.pane-view > .pane--active')
+  goToPane($active.id)
 }
 
-async function togglePanes () {
-  const $paneview = document.querySelector(".pane-view")
-  const $panes = document.querySelectorAll(".pane")
+function goToPane (id) {
+  const $target = document.querySelector(`.pane-view > .pane#${id}`)
+  const $others = document.querySelectorAll(`.pane-view > .pane:not(#${id})`)
 
-  for (const $pane of $panes) {
-    $pane.classList.toggle('active')
-    let $tabbed_inputs = $pane.querySelectorAll('[tabindex]')
-    for (const $input of $tabbed_inputs) {
-      if ($input.tabIndex < 0) {
-        $input.setAttribute('tabindex', Math.abs($input.tabIndex))
-      } else {
-        $input.setAttribute('tabindex', -1 * $input.tabIndex)
-      }
-    }
+  $target.classList.add('pane--active')
+  for (const $pane of $others) {
+    $pane.classList.remove('pane--active')
+  }
+
+  for (const $input of $target.querySelectorAll('[tabindex]')) {
+    $input.setAttribute('tabindex', 0)
+  }
+  for (const $input of $others.querySelectorAll('[tabindex]')) {
+    $input.setAttribute('tabindex', -1)
   }
 }
 
@@ -60,9 +60,8 @@ async function liftoff () {
   const description = $description.value || "";
   const site = $website.value || "";
 
-  if (!validateName(name)) {
-    return;
-  }
+  if (!validateName(name)) { return; }
+
   const launchpad_url = await DatArchive.resolveName(window.location.href)
   const neauoire_url = "dat://2f21e3c122ef0f2555d3a99497710cd875c7b0383f998a2d37c02c042d598485/"
 

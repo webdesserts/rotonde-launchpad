@@ -43,27 +43,26 @@ p {
   overflow: auto;
 }
 
-.pane.active {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 500ms 500ms ease;
-  z-index: 1;
-}
-
 .pane > *+* {
   margin-top: 1rem;
 }
 
-.pane:not(.active) {
-  opacity: 0;
-  transition: opacity 400ms ease, transform 300ms 100ms ease;
+.pane--active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 400ms 400ms ease, transform 400ms 400ms ease;
+  z-index: 1;
 }
 
-.pane:nth-child(1):not(.active) {
-  transform: scale(.98);
-  transform: translateX(-1rem);
+.pane:not(.pane--active) {
+  opacity: 0;
+  transition: opacity 500ms ease, transform 400ms 100ms ease;
 }
-.pane:nth-child(2):not(.active) {
+
+.pane--fade-left:not(.pane--active) {
+  transform: translateX(-1rem); 
+}
+.pane--fade-right:not(.pane--active) {
   transform: translateX(1rem);
 }
 
