@@ -25,15 +25,15 @@ function goToPane (id) {
   const $others = document.querySelectorAll(`.pane-view > .pane:not(#${id})`)
 
   $target.classList.add('pane--active')
-  for (const $pane of $others) {
-    $pane.classList.remove('pane--active')
-  }
-
   for (const $input of $target.querySelectorAll('[tabindex]')) {
     $input.setAttribute('tabindex', 0)
   }
-  for (const $input of $others.querySelectorAll('[tabindex]')) {
-    $input.setAttribute('tabindex', -1)
+
+  for (const $pane of $others) {
+    $pane.classList.remove('pane--active')
+    for (const $input of $pane.querySelectorAll('[tabindex]')) {
+      $input.setAttribute('tabindex', -1)
+    }
   }
 }
 
