@@ -75,9 +75,9 @@ async function liftoff () {
   const portal_str = {
     name: name,
     desc: description,
-    port:[],
-    feed:[],
-    site:site,
+    port: [],
+    feed: [],
+    site: site,
     dat: portal.url
   }
 
