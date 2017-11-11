@@ -15,6 +15,7 @@
   </defs>
   <mask id="icon-outer-mask" fill="#fff">
     <use href="#icon-outer-circle"/>
+    <circle cx="150" cy="150" r="20" fill="#000"/>
   </mask>
   <g fill="none" fill-rule="evenodd">
     <use stroke="#000" stroke-width="12" href="#icon-outer-circle"/>
@@ -23,7 +24,6 @@
       <use href="#icon-circle-band" transform="rotate(180 129.5 119)" />
       <use href="#icon-circle-band" transform="rotate(90 99.5 139.5)" />
       <use href="#icon-circle-band" transform="rotate(90 208 248)" />
-      <circle stroke="none" cx="150" cy="150" r="28" fill="#FFF"/>
     </g>
   </g>
 </svg>
