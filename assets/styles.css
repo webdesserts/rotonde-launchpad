@@ -30,8 +30,18 @@ p {
   margin: 1rem 0;
 }
 
+a[href] {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
 #landing-page h1 {
   text-align: center;
+}
+
+#landing-page p {
+  text-align: center;
+  max-width: 30rem;
 }
 
 .pane {
